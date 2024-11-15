@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :profiles
   resources :posts do
     resources :comments
-    resources :likes
+    resources :likes, only: [:create, :destroy]
     member do
       post 'repost'
     end

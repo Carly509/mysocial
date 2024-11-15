@@ -1,15 +1,28 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="bg-white shadow sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6">
+      <div class="flex items-center">
+        <div class="flex-shrink-0 h-24 w-24">
+          <%= image_tag @profile.avatar_url, class: "h-24 w-24 rounded-full object-cover" %>
+        </div>
+        <div class="ml-4">
+          <h1 class="text-2xl font-bold text-gray-900"><%= @profile.username %></h1>
+          <p class="mt-1 max-w-2xl text-sm text-gray-500"><%= @profile.bio %></p>
+        </div>
+        <% if current_user == @profile.user %>
+          <%= link_to "Edit Profile", edit_profile_path(@profile),
+              class: "ml-auto btn-secondary" %>
+        <% else %>
+          <%= render "follows/button", user: @profile.user %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-    <%= render @profile %>
-
-    <%= link_to "Edit this profile", edit_profile_path(@profile), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to profiles", profiles_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this profile", @profile, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+  <div class="mt-8">
+    <h2 class="text-lg font-medium text-gray-900">Posts</h2>
+    <div class="mt-4 space-y-6">
+      <%= render @posts %>
     </div>
   </div>
 </div>

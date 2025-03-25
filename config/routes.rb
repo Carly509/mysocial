@@ -1,18 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :profiles
-  resources :posts do
-    resources :comments
-    resources :likes, only: [:create, :destroy]
-    member do
-      post 'repost'
-    end
-  end
-
-  resources :follows, only: [:create, :destroy]
-  resources :messages
-  resources :blocks, only: [:create, :destroy]
-
-  root 'posts#index'
+  # Defines the root path route ("/")
+  # root "articles#index"
 end

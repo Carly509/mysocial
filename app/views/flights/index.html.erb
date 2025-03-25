@@ -1,0 +1,40 @@
+<div class="relative flex size-full min-h-screen flex-col bg-white">
+  <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f3f4] px-10 py-3">
+    <div class="flex items-center gap-4 text-[#111518]">
+      <%= render 'shared/logo' %>
+      <h2 class="text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em]">Flight Finder</h2>
+    </div>
+    <%= render 'shared/navigation' %>
+  </header>
+
+  <div class="px-40 flex flex-1 justify-center py-5">
+    <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+      <%= render 'shared/hero_search' %>
+
+      <h2 class="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
+        AI recommendations
+      </h2>
+
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+        <% @recommendations.each do |recommendation| %>
+          <div class="flex flex-1 gap-3 rounded-lg border border-[#dbe2e6] bg-white p-4 flex-col">
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0"
+              style="background-image: url('<%= recommendation[:image] %>');"
+            ></div>
+            <div class="flex flex-col gap-1">
+              <h2 class="text-[#111518] text-base font-bold leading-tight">
+                <%= recommendation[:title] %>
+              </h2>
+              <p class="text-[#617b89] text-sm font-normal leading-normal">
+                <%= recommendation[:price] %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render 'shared/filters' %>
+    </div>
+  </div>
+</div>
